@@ -39,4 +39,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+    implementation ("com.google.apis:google-api-services-youtube:v3-rev20210915-1.32.1")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+    //Parceler dependencies
+    implementation ("org.parceler:parceler-api:1.1.13")
+    annotationProcessor ("org.parceler:parceler:1.1.13")
+
+
 }
