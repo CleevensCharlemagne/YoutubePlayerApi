@@ -14,6 +14,8 @@ import java.util.List;
 
 public class PlaylistItems {
 
+    private String msg;
+
     // Définir la clé API
     private static final String API_KEY = "AIzaSyDGclG7Z2TJEr1fsB2MClX1lwh9y1xxCx8";
 
@@ -26,9 +28,25 @@ public class PlaylistItems {
     // Créer un objet service YouTube
     private static YouTube youtube;
 
+    private String playlistId;
 
-    public List<Video> retreiveVideosFromplaylist(String playlistId) {
-        List<Video> videoList = new ArrayList<>();
+    private ArrayList<Video> listOfVideos;
+
+    public PlaylistItems(String playlistId){
+        this.playlistId = playlistId;
+        this.listOfVideos = retreiveVideosFromplaylist(this.playlistId);
+    }
+
+    public String getMsg(){
+        return this.msg;
+    }
+
+    public ArrayList<Video> getListOfVideos(){
+        return this.listOfVideos;
+    }
+
+    private ArrayList<Video> retreiveVideosFromplaylist(String playlistId) {
+        ArrayList<Video> videoList = new ArrayList<>();
         try {
             // Initialiser l'objet service YouTube avec un HttpRequestInitializer vide
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, new HttpRequestInitializer() {
@@ -59,9 +77,18 @@ public class PlaylistItems {
                     System.out.println();
                     videoList.add(new Video(videoId, title));
                 }
+
+                this.msg = "ok";
+
             } else {
-                System.out.println("Aucune vidéo trouvée.");
+                this.msg = "Aucune vidéo trouvée.";
             }
+
+//            if(videoList.size() == 0){
+//                msg = "Aucune vidéo trouvée.";
+//            } else {
+//                msg = "0k";
+//            }
 
         } catch (GoogleJsonResponseException e) {
             System.err.println("Une erreur s'est produite: " + e.getDetails().getMessage());

@@ -22,7 +22,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     private List<Video> videoList;
     Context context;
 
-    public VideoAdapter(ArrayList<Video> videoList, Context context) {
+    public VideoAdapter(List<Video> videoList, Context context) {
         this.videoList = videoList;
         this.context = context;
     }

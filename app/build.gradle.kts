@@ -14,6 +14,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        packagingOptions {
+            exclude ("META-INF/DEPENDENCIES")
+        }
     }
 
     buildTypes {
@@ -42,7 +46,7 @@ dependencies {
 
 
     implementation ("com.google.apis:google-api-services-youtube:v3-rev20210915-1.32.1")
-    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     //Parceler dependencies
     implementation ("org.parceler:parceler-api:1.1.13")
     annotationProcessor ("org.parceler:parceler:1.1.13")
