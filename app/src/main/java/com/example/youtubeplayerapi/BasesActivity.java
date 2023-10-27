@@ -20,20 +20,21 @@ public class BasesActivity extends AppCompatActivity {
         // Créer une liste d'éléments vidéo
         ArrayList<Video> videoItems = playlistItems.getListOfVideos();
 
-        // Créer un adaptateur pour la RecyclerView
-        VideoAdapter videoAdapter = new VideoAdapter(videoItems, this);
+        // Vérifier si la liste est vide
+        if (videoItems.isEmpty()) {
+            Toast.makeText(this, "La liste de vidéos est vide", Toast.LENGTH_SHORT).show();
+        } else {
+            // Créer un adaptateur pour la RecyclerView
+            VideoAdapter videoAdapter = new VideoAdapter(videoItems, this);
 
-        // Obtenir la RecyclerView du layout de l'activité
-        RecyclerView recyclerView = findViewById(R.id.rv_bases);
+            // Obtenir la RecyclerView du layout de l'activité
+            RecyclerView recyclerView = findViewById(R.id.rv_bases);
 
-        // Définir le gestionnaire de layout pour la RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            // Définir le gestionnaire de layout pour la RecyclerView
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Définir l'adaptateur pour la RecyclerView
-        recyclerView.setAdapter(videoAdapter);
-
-
-
-        Toast.makeText(this, playlistItems.getMsg(), Toast.LENGTH_SHORT).show();
+            // Définir l'adaptateur pour la RecyclerView
+            recyclerView.setAdapter(videoAdapter);
+        }
     }
 }

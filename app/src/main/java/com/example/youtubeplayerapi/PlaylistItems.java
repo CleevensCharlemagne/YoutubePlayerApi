@@ -1,5 +1,7 @@
 package com.example.youtubeplayerapi;
 
+import android.util.Log;
+
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -17,7 +19,7 @@ public class PlaylistItems {
     private String msg;
 
     // Définir la clé API
-    private static final String API_KEY = "AIzaSyDGclG7Z2TJEr1fsB2MClX1lwh9y1xxCx8";
+    private static final String API_KEY = "AIzaSyAq_gZTBmHW77jpmknsGaESHoiY5iEyV0U";
 
     // Définir le nom du service
     private static final String APPLICATION_NAME = "com.example.youtubeplayerapi";
@@ -34,7 +36,7 @@ public class PlaylistItems {
 
     public PlaylistItems(String playlistId){
         this.playlistId = playlistId;
-        this.listOfVideos = retreiveVideosFromplaylist(this.playlistId);
+        this.listOfVideos = retreiveVideosFromplaylist(playlistId);
     }
 
     public String getMsg(){
@@ -63,6 +65,9 @@ public class PlaylistItems {
             // Appeler l'API et obtenir la réponse
             PlaylistItemListResponse playlistItemsResponse = playlistItemsRequest.execute();
 
+            // Ajouter une déclaration de journalisation ici
+            Log.d("API_CALL", "La requête à l'API a été effectuée.");
+
             // Obtenir la liste des vidéos de la réponse
             List<PlaylistItem> playlistItems = playlistItemsResponse.getItems();
 
@@ -80,15 +85,15 @@ public class PlaylistItems {
 
                 this.msg = "ok";
 
+                // Ajouter une déclaration de journalisation ici
+                Log.d("API_CALL", "Les vidéos ont été ajoutées à la liste.");
+
             } else {
                 this.msg = "Aucune vidéo trouvée.";
-            }
 
-//            if(videoList.size() == 0){
-//                msg = "Aucune vidéo trouvée.";
-//            } else {
-//                msg = "0k";
-//            }
+                // Ajouter une déclaration de journalisation ici
+                Log.d("API_CALL", "Aucune vidéo n'a été trouvée.");
+            }
 
         } catch (GoogleJsonResponseException e) {
             System.err.println("Une erreur s'est produite: " + e.getDetails().getMessage());
@@ -100,5 +105,6 @@ public class PlaylistItems {
 
         return videoList;
     }
+
 }
 
